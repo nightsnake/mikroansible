@@ -1,3 +1,9 @@
 ---
+- name: Generate .rsc to set snmp community
+  template: src=snmp.rsc.j2 dest=roles/snmp/files/tmp/{{inventory_hostname}}.rsc
+
 - name: Configure SNMP
-  command: bash -c "cat roles/snmp/files/snmp.rsc | ssh -T {{inventory_hostname}} -p {{ansible_ssh_port}}"  
+  command: bash -c "cat roles/snmp/files/tmp/{{inventory_hostname}}.rsc | ssh -T {{inventory_hostname}} -p {{ansible_ssh_port}}"
+
+- name: Delete temp .rsc file
+  file: path=roles/snmp/files/tmp/{{inventory_hostname}}.rsc state=absent

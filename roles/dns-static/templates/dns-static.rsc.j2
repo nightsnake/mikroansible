@@ -1,0 +1,5 @@
+/foreach i in=[/ip dns static find] do={/ip dns static remove numbers=$i}
+
+{% for entry in static_dns_entries %}
+/ip dns static add address={{entry.address}} name={{entry.name}}
+{% endfor %}

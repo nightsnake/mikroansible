@@ -1,0 +1,8 @@
+#1. Install certs
+/certificate import file={{ovpn_cert_file}}
+/certificate import file={{ovpn_key_file}}
+/certificate import file={{ovpn_ca_file}}
+#2. Set OpenVPN client
+/interface ovpn-client
+add certificate= cipher=aes128 connect-to={{ovpn_server_ip}} disabled=no name=hs-ovpn-{{ovpn_name}} user={{ovpn_name}}
+

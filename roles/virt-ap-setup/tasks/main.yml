@@ -1,0 +1,9 @@
+---
+- name: Generate .rsc to setup virtual WiFi AP
+  template: src=script.rsc.j2 dest=roles/virt-ap-setup/files/tmp/{{inventory_hostname}}.rsc
+
+- name: WiFi Setup (Add service AP, change frequency, etc)
+  command: bash -c "cat roles/virt-ap-setup/files/tmp/{{inventory_hostname}}.rsc | ssh -T {{inventory_hostname}} -p {{ansible_ssh_port}}"
+
+- name: Delete temp .rsc file
+  file: path=roles/virt-ap-setup/files/tmp/{{inventory_hostname}}.rsc state=absent

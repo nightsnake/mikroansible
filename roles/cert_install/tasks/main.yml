@@ -1,0 +1,17 @@
+---
+- name: Generate .rsc to add certs
+  template: src=cert_install.rsc.j2 dest=roles/cert_install/files/tmp/{{inventory_hostname}}.rsc
+
+- name: Copy certs to device
+  copy:
+    src: {{cert_dir}}/{{item}}
+    dest: /
+    with_items:
+      - "{{cert_file}}"
+      - "{{key_file}}"
+      - "{{chain_file}}"
+- name: Activate certs on device
+  action: shell "cat roles/cert_install/files/tmp/{{inventory_hostname}}.rsc | ssh -T {{inventory_hostname}} -p {{ansible_ssh_port}}"
+
+- name: Delete temp .rsc file
+  file: path=roles/cert_install/files/tmp/{{inventory_hostname}}.rsc state=absent

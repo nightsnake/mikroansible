@@ -1,0 +1,5 @@
+/ip proxy set enabled=yes
+/ip proxy access { :foreach r in=[find] do={ remove $r }}
+{% for site in denied_sites %}
+/ip proxy access add action=allow disabled=no dst-host={{site}} dst-port=""
+{% endfor %}

@@ -1,0 +1,4 @@
+/foreach i in=[/ip firewall address-list find list="admins"] do {/ip firewall address-list remove numbers=$i}
+{% for host in admin_list %}
+/ip firewall address-list add address={{host}} list=admins
+{% endfor %}

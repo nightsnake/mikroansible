@@ -1,0 +1,34 @@
+---
+- hosts: hotspot
+  gather_facts: no
+  roles:
+#Make configuration and place it into file
+#    - hotspot_router
+#1. Set DNS as 8.8.8.8
+    - set-dns-servers
+#2. Enable SNMP, set community
+    - snmp
+#3. Disable services
+    - services
+#4. Set identity
+#5. Set timezone, enable NTP
+    - timezone-moscow
+#6. Set static DNS entries
+    - dns-static
+#7. Change admin password
+
+##. Set OpenVPN Settings
+    - ovpn-client
+#8. Change WiFi settings
+#9. Enable service wifi (if enabled)
+    - virt-ap-setup
+#10. Add DHCP pool, DHCP server, DHCP network, ip address for HS-wifi
+#11. Add masquerade rule for HS-wifi
+#12. Add hotspot
+#13. fetch keys, jquery, html's
+#15. Set WG settings
+#16. Set firewall settings
+    - cert_install
+#14. Enable HTTPS for hotspot
+
+

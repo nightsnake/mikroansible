@@ -1,3 +1,9 @@
 ---
+- name: Generate .rsc to set dummy route rules
+  template: src=route-dummy-rule.rsc.j2 dest=roles/route-dummy-rule/files/tmp/{{inventory_hostname}}.rsc
+
 - name: Add ip route dummy rules
-  command: bash -c "cat roles/route-dummy-rule/files/route-dummy-rule.rsc | ssh -T {{inventory_hostname}} -p {{ansible_ssh_port}}"  
+  command: bash -c "cat roles/route-dummy-rule/files/tmp/{{inventory_hostname}}.rsc | ssh -T {{inventory_hostname}} -p {{ansible_ssh_port}}"
+
+- name: Delete temp .rsc file
+  file: path=roles/route-dummy-rule/files/tmp/{{inventory_hostname}}.rsc state=absent

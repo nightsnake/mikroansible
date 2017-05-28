@@ -1,3 +1,10 @@
 ---
+
+- name: Generate .rsc to update proxy addr-list
+  template: src=proxy-addr-list.rsc.j2 dest=roles/web-proxy-update-addr-list/files/tmp/{{inventory_hostname}}.rsc
+
 - name: Update WEB Proxy Addr List
-  command: bash -c "cat roles/web-proxy-update-addr-list/files/proxy-addr-list.rsc | ssh -T {{inventory_hostname}} -p {{ansible_ssh_port}}"  
+  command: bash -c "cat roles/web-proxy-update-addr-list/files/tmp/{{inventory_hostname}}.rsc | ssh -T {{inventory_hostname}} -p {{ansible_ssh_port}}"
+
+- name: Delete temp .rsc file
+  file: path=roles/web-proxy-update-addr-list/files/tmp/{{inventory_hostname}}.rsc state=absent

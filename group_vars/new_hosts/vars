@@ -1,0 +1,30 @@
+#####General settings
+ansible_ssh_port: 22
+mkt_user_name: "mktmgr"
+mkt_user_key: "CHANGEME"
+ros_login: admin
+ros_passwd: CHANGEME
+
+#####Admin list
+admin_list:
+  - 10.0.0.1
+  - 192.168.88.1
+
+#####E-mail notifications
+admin_email: "admin@example.com"
+sender_email: "sender@example.com"
+sender_passwd: "CHANGE_ME"
+sender_server: "smtp.example.com"
+sender_port: 25
+
+dhcp_options:
+  - {name: DomainToSearch, value: 'example.local', code: 119}  # Search Domain
+static_dns_entries:
+  - {name: 'example.com', address: '192.168.0.1'}  # Some domain
+null_routes:
+  - "10.0.0.0/8"
+snmp_settings:
+  - {community: "public", address: '192.168.88.1'} # SNMP community string
+denied_sites:
+  - "*accounts.google.com"
+

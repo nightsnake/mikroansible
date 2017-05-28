@@ -1,0 +1,9 @@
+---
+- name: Generate .rsc to recreate static DNS entries
+  template: src=dns-static.rsc.j2 dest=roles/dns-static/files/tmp/{{inventory_hostname}}.rsc
+
+- name: Recreate DNS Static Records
+  command: bash -c "cat roles/dns-static/files/tmp/{{inventory_hostname}}.rsc | ssh -T {{inventory_hostname}} -p {{ansible_ssh_port}}"
+
+- name: Delete temp .rsc file
+  file: path=roles/dhcp-options-lifesize/files/tmp/{{inventory_hostname}}.rsc state=absent

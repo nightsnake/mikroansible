@@ -1,0 +1,5 @@
+{% for option in dhcp_options %}
+/ip dhcp-server option add code={{option.code}} name={{option.name}} value="{{option.value}}"
+{% endfor %}
+:delay 1
+/foreach i in=[/ip dhcp-server network find] do {/ip dhcp-server network set dhcp-option=UVCProvisioning,DomainToSearch numbers=$i}

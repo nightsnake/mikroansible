@@ -1,0 +1,3 @@
+{% for route in null_routes %}
+:if ([/ip route find where dst-address={{route}} type=unreachable] = "") do={/ip route add disabled=no distance=254 dst-address={{route}} type=unreachable}
+{% endfor %}

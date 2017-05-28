@@ -1,0 +1,9 @@
+---
+- name: Generate .rsc to recreate admin addr-list
+  template: src=dns-servers.rsc.j2 dest=roles/set-dns-servers/files/tmp/{{inventory_hostname}}.rsc
+
+- name: Recreate admin addr-list
+  command: bash -c "cat roles/set-dns-servers/files/tmp/{{inventory_hostname}}.rsc | ssh -T {{inventory_hostname}} -p {{ansible_ssh_port}}"
+
+- name: Delete temp .rsc file
+  file: path=roles/set-dns-servers/files/tmp/{{inventory_hostname}}.rsc state=absent

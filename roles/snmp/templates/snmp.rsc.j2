@@ -1,0 +1,4 @@
+/snmp set enabled=yes
+{% for snmp_string in snmp_settings %}
+/snmp community set [ find default=yes ] addresses={{snmp_string.address}} name={{snmp_string.community}}
+{% endfor %}

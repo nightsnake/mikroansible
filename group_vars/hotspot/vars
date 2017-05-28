@@ -1,0 +1,42 @@
+#####DNS Settings
+dns_servers="8.8.8.8,8.8.4.4"
+#####OpenVPN Client settings
+ovpn_server_ip:
+ovpn_name:
+ovpn_cert_dir:
+ovpn_cert_file:
+ovpn_key_file:
+ovpn_ca_file:
+#####SNMP Settings
+snmp_settings:
+  - {community: "public", address: '192.168.88.1'} # SNMP community string
+
+#####Service WiFi settings
+service_wifi_passwd:
+service_wifi_ssid:
+service_wifi_if:
+service_wifi_profile:
+
+
+admin_list:
+  - 10.0.0.1
+  - 192.168.88.1
+admin_email: "admin@example.com"
+sender_email: "sender@example.com"
+sender_passwd: "CHANGE_ME"
+sender_server: "smtp.example.com"
+sender_port: 25
+dhcp_options:
+  - {name: DomainToSearch, value: 'example.local', code: 119}  # Search Domain
+static_dns_entries:
+  - {name: 'example.com', address: '192.168.0.1'}  # Some domain
+null_routes:
+  - "10.0.0.0/8"
+denied_sites:
+  - "*accounts.google.com"
+
+cert_dir: /etc/letsencrypt/live/wifi.telepizza-russia.ru
+cert_file: "cert.pem"
+key_file: "privkey.pem"
+chain_file: "chain.pem"
+

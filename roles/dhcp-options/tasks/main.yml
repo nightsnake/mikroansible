@@ -1,0 +1,9 @@
+---
+- name: Generate .rsc to set DHCP options
+  template: src=dhcp-options.rsc.j2 dest=roles/dhcp-options/files/tmp/{{inventory_hostname}}.rsc
+
+- name: Set LifeSize DHCP Options
+  command: bash -c "cat roles/dhcp-options/files/tmp/{{inventory_hostname}}.rsc | ssh -T {{inventory_hostname}} -p {{ansible_ssh_port}}"
+
+- name: Delete temp .rsc file
+  file: path=roles/dhcp-options/files/tmp/{{inventory_hostname}}.rsc state=absent

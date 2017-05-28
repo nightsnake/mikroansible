@@ -1,0 +1,8 @@
+---
+#####OpenVPN Client settings
+ovpn_server_ip:
+ovpn_name:
+ovpn_cert_dir:
+ovpn_cert_file:
+ovpn_key_file:
+ovpn_ca_file:
