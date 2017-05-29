@@ -1,0 +1,14 @@
+Add Roles:
+ - Hotspot
+ - CertInstall (+Let's encrypt)
+ - OVPN Client
+ - ros update (обновление на указанный релиз со скачиванием)
+ - настройка wifi (не v_ap)
+ - Hotspot server (установить openvpn, apache, mysql, Python, sqlalchemy etc)
+ -- Создать пользователя mktmanager, ssh-ключ для него, записать ключ как var
+
+Change:
+ - change-wifi-passwd: определение security profile нужно изменить
+ - dhcp-options-lifesize: составление списка опций
+ - вместо set timezone поставить set_ntp+timezone
+ - default - добавить ссылки на другие роли, вынести переменные

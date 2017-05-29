@@ -3,3 +3,4 @@ build/*
 inventory/*
 log/*
 roles/New-WiFi-AP-setup/files/tmp/*
+hotspot.yml
