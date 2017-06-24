@@ -1,0 +1,10 @@
+#1. Remove cert file with same common-name (You need to define it below)
+/foreach i in=[/certificate find common-name="Let's Encrypt Authority X3"] do {/certificate remove $i}
+/foreach i in=[/certificate find common-name="{{hspot_oauth}}"] do {/certificate remove $i}
+#2. install new certs (cert.pem, privkey.pem, chain.pem)
+/certificate import file={{cert_file}}
+/certificate import file={{key_file}}
+/certificate import file={{chain_file}}
+#3. check www-ssl and hotspot certs (set new cert at www-ssl and hotspot you need to define common-name)
+/foreach i in=[/ip hotspot profile find login-by=https] do {/ip hotspot profile set $i ssl-certificate=[/certificate find common-name={{hspot_oauth}}]}
+/foreach i in=[/ip service find name=www-ssl] do {/ip service set $i certificate=[/certificate find common-name={{hspot_oauth}}]}
